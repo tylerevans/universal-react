@@ -7,6 +7,7 @@ module.exports = {
   devtool: '#source-map',
   entry: [
     'webpack-hot-middleware/client',
+    'bootstrap-loader',
     './app/index.js'
   ],
   output: {
@@ -38,6 +39,15 @@ module.exports = {
           ['transform-object-assign']
         ]
       }
-    }]
-  }
+    },
+    { test:/bootstrap-sass[\/\\]assets[\/\\]javascripts[\/\\]/, loader: 'imports?jQuery=jquery' },
+    {
+      test: /\.(woff2?|svg)$/,
+      loader: 'url?limit=10000'
+    },
+    {
+      test: /\.(ttf|eot)$/,
+      loader: 'file'
+    }
+  ]}
 };

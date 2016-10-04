@@ -2,8 +2,15 @@
 
 This boilerplate aims at solving the MVP (Minimal Viable Product) of a universal app while trying to keep the base unopinionated elsewhere and simple to read and extend.
 
-[![Universal React on NPM](https://img.shields.io/npm/v/universal-react.svg)](https://www.npmjs.com/package/universal-react)
-[![Dependency Status](https://david-dm.org/DominicTobias/universal-react.svg)](https://david-dm.org/DominicTobias/universal-react)
+# My Modification
+
+I have modified this to suit my development style.
+
+- Redux Devtools in development mode
+- ESLint with Airbnb's configuration
+- Bootstrap 3 including JQuery
+- SASS, SCSS & CSS usage
+- Additional Webpack loaders (file-loader, imports-loader, url-loader etc)
 
 ## Features
 
@@ -16,6 +23,8 @@ This boilerplate aims at solving the MVP (Minimal Viable Product) of a universal
 - 404 and redirect handling
 - Shared app config
 - [Webpack](https://webpack.github.io) and [Babel](https://babeljs.io)
+- Redux devtools
+- ESLinting
 
 Since there are so many opinions on how to use css (vanilla, sass, less, react css modules etc) I've left it up to you.
 

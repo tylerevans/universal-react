@@ -37,8 +37,14 @@ class Home extends Component {
     return (
       <div>
         <Helmet title='Home' />
-        <h5>Users:</h5>
-        {this.renderUsers()}
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-12">
+                <h5>Users:</h5>
+                {this.renderUsers()}
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
