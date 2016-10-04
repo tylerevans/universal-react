@@ -2,24 +2,20 @@
 
 var path = require('path');
 var webpack = require('webpack');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   devtool: '#source-map',
   entry: [
     'webpack-hot-middleware/client',
-    'bootstrap-loader',
-    './app/index.js'
+    './app/index.js',
+    './app/styles/style.js'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'app.js',
+    filename: '[name].js',
     publicPath: '/'
   },
-  plugins: [
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
-  ],
   module: {
     loaders: [{
       test: /\.js?$/,
@@ -39,15 +35,23 @@ module.exports = {
           ['transform-object-assign']
         ]
       }
-    },
-    { test:/bootstrap-sass[\/\\]assets[\/\\]javascripts[\/\\]/, loader: 'imports?jQuery=jquery' },
-    {
+    }, {
       test: /\.(woff2?|svg)$/,
       loader: 'url?limit=10000'
-    },
-    {
+    }, {
       test: /\.(ttf|eot)$/,
       loader: 'file'
-    }
-  ]}
+    }, {
+      test: /\.css$/, loader: ExtractTextPlugin.extract({
+        fallbackLoader: "style-loader",
+        loader: "css-loader"
+      })
+    }]
+  },
+  plugins: [
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
+    new ExtractTextPlugin("style.min.css")
+  ]
 };

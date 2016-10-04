@@ -16,20 +16,21 @@ class Root extends Component {
 
   render() {
     const head = this.props.head;
-    
+
     return (
       <html>
         <head>
           {head.title.toComponent()}
           {head.meta.toComponent()}
           {head.link.toComponent()}
+          <link href="/style.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
         </head>
         <body>
           <div id='root' dangerouslySetInnerHTML={{__html: this.props.content}} />
           {this.renderEnvironment()}
           {this.renderInitialState()}
           {head.script.toComponent()}
-          <script src={!process.env.NODE_ENV ? '/app.js' : '/app.min.js'}></script>
+          <script src={!process.env.NODE_ENV ? '/main.js' : '/main.min.js'}></script>
         </body>
       </html>
     );
