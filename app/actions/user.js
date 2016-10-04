@@ -1,3 +1,5 @@
+/* global fetch */
+
 export const USER_INVALID = 'USER_INVALID';
 export const USER_FETCHING = 'USER_FETCHING';
 export const USER_FETCHED = 'USER_FETCHED';
@@ -7,15 +9,15 @@ function fetchUser(userId) {
   return (dispatch) => {
     dispatch({ type: USER_FETCHING, userId: userId });
 
-    return fetch('http://jsonplaceholder.typicode.com/users/' + userId)
+    return fetch(`http://jsonplaceholder.typicode.com/users/${userId}`)
       .then((response) => {
         return response.json();
       })
       .then(
-        (result) => dispatch({ type: USER_FETCHED, userId: userId, result }),
-        (error) => dispatch({ type: USER_FETCH_FAILED, userId: userId, error })
+        result => dispatch({ type: USER_FETCHED, userId: userId, result }),
+        error => dispatch({ type: USER_FETCH_FAILED, userId: userId, error })
       );
-  }
+  };
 }
 
 function shouldFetchUser(state, userId) {
@@ -31,9 +33,9 @@ function shouldFetchUser(state, userId) {
 }
 
 export function fetchUserIfNeeded(userId) {
-  return (dispatch, getState) => {
+  return (dispatch, getState) => { // eslint-disable-line
     if (shouldFetchUser(getState(), userId)) {
       return dispatch(fetchUser(userId));
     }
-  }
+  };
 }

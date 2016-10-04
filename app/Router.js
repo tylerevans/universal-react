@@ -1,10 +1,13 @@
+/* global window, document */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { Router, match, RouterContext, browserHistory } from 'react-router';
+import { Provider } from 'react-redux';
+
 import Helmet from 'react-helmet';
 import routes from './Routes';
-import { Provider } from 'react-redux';
 import Root from './containers/Root';
 import configureStore from './configureStore';
 
@@ -31,7 +34,7 @@ function renderComponentWithRoot(Component, componentProps, store) {
   const head = Helmet.rewind();
   const initialState = store.getState();
 
-  return '<!doctype html>\n' + renderToStaticMarkup(
+  return '<!doctype html>\n' + renderToStaticMarkup( // eslint-disable-line
     <Root content={componentHtml} initialState={initialState} head={head} />
   );
 }
@@ -52,8 +55,8 @@ function handleRoute(res, renderProps) {
   const store = configureStore();
   const status = routeIsUnmatched(renderProps) ? 404 : 200;
   const readyOnAllActions = renderProps.components
-    .filter((component) => component.readyOnActions)
-    .map((component) => component.readyOnActions(store.dispatch, renderProps.params));
+    .filter(component => component.readyOnActions)
+    .map(component => component.readyOnActions(store.dispatch, renderProps.params));
 
   Promise
     .all(readyOnAllActions)

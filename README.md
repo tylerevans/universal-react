@@ -9,6 +9,7 @@ I have modified this to suit my development style.
 - Redux Devtools in development mode
 - ESLint with Airbnb's configuration
 - Bootstrap 3 including JQuery
+- Fontawesome
 - SASS, SCSS & CSS usage
 - Additional Webpack loaders (file-loader, imports-loader, url-loader etc)
 

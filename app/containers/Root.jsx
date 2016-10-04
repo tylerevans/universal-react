@@ -1,24 +1,26 @@
+/* global __ENVIRONMENT__ */
+
 import React, { Component } from 'react';
 
 class Root extends Component {
 
-  renderInitialState() {
+  renderInitialState() { // eslint-disable-line
     if (this.props.initialState) {
       const innerHtml = `window.__INITIAL_STATE__ = ${JSON.stringify(this.props.initialState)}`;
-      return <script dangerouslySetInnerHTML={{__html: innerHtml}} />;
+      return <script dangerouslySetInnerHTML={{ __html: innerHtml }} />;
     }
   }
 
-  renderEnvironment() {
+  renderEnvironment() { // eslint-disable-line
     const innerHtml = `window.__ENVIRONMENT__ = '${__ENVIRONMENT__}'`;
-    return <script dangerouslySetInnerHTML={{__html: innerHtml}} />
+    return <script dangerouslySetInnerHTML={{ __html: innerHtml }} />;
   }
 
   render() {
     const head = this.props.head;
 
     return (
-      <html>
+      <html lang="en">
         <head>
           {head.title.toComponent()}
           {head.meta.toComponent()}
@@ -26,7 +28,7 @@ class Root extends Component {
           <link href="/style.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
         </head>
         <body>
-          <div id='root' dangerouslySetInnerHTML={{__html: this.props.content}} />
+          <div id="root" dangerouslySetInnerHTML={{ __html: this.props.content }} />
           {this.renderEnvironment()}
           {this.renderInitialState()}
           {head.script.toComponent()}

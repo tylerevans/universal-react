@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
 import * as UsersActions from '../actions/users';
 import UserList from '../components/UserList';
 
@@ -10,7 +9,7 @@ class Home extends Component {
 
   static readyOnActions(dispatch) {
     return Promise.all([
-      dispatch(UsersActions.fetchUsersIfNeeded())
+      dispatch(UsersActions.fetchUsersIfNeeded()),
     ]);
   }
 
@@ -36,12 +35,12 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Helmet title='Home' />
+        <Helmet title="Home" />
         <div className="container">
           <div className="row">
             <div className="col-sm-12">
-                <h5>Users:</h5>
-                {this.renderUsers()}
+              <h5>Users:</h5>
+              {this.renderUsers()}
             </div>
           </div>
         </div>
@@ -52,7 +51,7 @@ class Home extends Component {
 
 function mapStateToProps(state) {
   return {
-    users: state.users
+    users: state.users,
   };
 }
 

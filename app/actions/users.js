@@ -1,3 +1,5 @@
+/* global fetch */
+
 export const USERS_INVALID = 'USERS_INVALID';
 export const USERS_FETCHING = 'USERS_FETCHING';
 export const USERS_FETCHED = 'USERS_FETCHED';
@@ -12,10 +14,10 @@ function fetchUsers() {
         return response.json();
       })
       .then(
-        (result) => dispatch({ type: USERS_FETCHED, result }),
-        (error) => dispatch({ type: USERS_FETCH_FAILED, error })
+        result => dispatch({ type: USERS_FETCHED, result }),
+        error => dispatch({ type: USERS_FETCH_FAILED, error })
       );
-  }
+  };
 }
 
 function shouldFetchUsers(state) {
@@ -31,9 +33,9 @@ function shouldFetchUsers(state) {
 }
 
 export function fetchUsersIfNeeded() {
-  return (dispatch, getState) => {
+  return (dispatch, getState) => { // eslint-disable-line
     if (shouldFetchUsers(getState())) {
       return dispatch(fetchUsers());
     }
-  }
+  };
 }

@@ -1,0 +1,4 @@
+# node_modules ignored by default
+dist/
+webpack.config.js
+webpack.production.config.js

@@ -9,7 +9,7 @@ class User extends Component {
 
   static readyOnActions(dispatch, params) {
     return Promise.all([
-      dispatch(UserActions.fetchUserIfNeeded(params.id))
+      dispatch(UserActions.fetchUserIfNeeded(params.id)),
     ]);
   }
 
@@ -41,7 +41,7 @@ class User extends Component {
         <Helmet
           title={this.getUser() ? this.getUser().name : ''}
           meta={[
-            {'name': 'description', 'content': 'User Profile'}
+            { name: 'description', content: 'User Profile' },
           ]}
         />
         {this.renderUser()}
@@ -52,7 +52,7 @@ class User extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    user: state.user,
   };
 }
 
