@@ -1,10 +1,16 @@
-import { createStore, applyMiddleware } from 'redux';
+import { compose, createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from './reducers';
 
-const createStoreWithMiddleware = applyMiddleware(
-  thunkMiddleware
-)(createStore);
+const createStoreWithMiddleware = process.env.NODE_ENV === "production"
+  ?
+    applyMiddleware(thunkMiddleware)(createStore)
+  :
+  compose(
+    applyMiddleware(thunkMiddleware),
+    typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f
+    )(createStore)
+
 
 export default function configureStore(initialState) {
   const store = createStoreWithMiddleware(rootReducer, initialState);
