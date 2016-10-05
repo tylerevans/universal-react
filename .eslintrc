@@ -2,6 +2,7 @@
   "parser": "babel-eslint",
   "extends": "eslint-config-airbnb",
   "rules": {
+      // Allow
       "arrow-body-style": 0,
       "object-shorthand": 0,
       "max-len": 0,

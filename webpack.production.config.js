@@ -40,6 +40,11 @@ module.exports = {
   },
   module: {
     loaders: [{
+				enforce: 'pre',
+				test: /\.(js|jsx)$/,
+				loader: 'eslint-loader',
+				exclude: /node_modules/
+			}, {
       test: /\.(js|jsx)?$/,
       loader: 'babel',
       include: path.join(__dirname, 'app'),
@@ -63,6 +68,9 @@ module.exports = {
     }]
   },
   resolve: {
+    extensions: [
+      '.js', '.jsx',
+    ],
     alias: {
       'te-scripts': SCRIPTS_ROOT,
       'te-styles': STYLES_ROOT
