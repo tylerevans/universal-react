@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import Helmet from 'react-helmet';
 
-const App = () => {
+const App = ({ children }) => {
   return (
     <div>
       <Helmet
@@ -18,7 +18,7 @@ const App = () => {
           <li><Link to="/">Users</Link></li>
         </ul>
       </nav>
-      {this.props.children}
+      {children}
     </div>
   );
 };
