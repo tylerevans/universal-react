@@ -4,17 +4,17 @@ import { connect } from 'react-redux';
 import * as UserActions from '../actions/user';
 import UserCard from '../components/UserCard';
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-  };
-};
-
+// @connect(state => { user: state.user })
 class User extends Component {
-  componentDidMount() {
+
+  static readyOnActions(dispatch, params) {
     return Promise.all([
-      this.props.dispatch(UserActions.fetchUserIfNeeded(this.props.params.id)),
+      dispatch(UserActions.fetchUserIfNeeded(params.id)),
     ]);
+  }
+
+  componentDidMount() {
+    User.readyOnActions(this.props.dispatch, this.props.params);
   }
 
   getUser() {
@@ -48,6 +48,12 @@ class User extends Component {
       </div>
     );
   }
+}
+
+function mapStateToProps(state) {
+  return {
+    user: state.user,
+  };
 }
 
 export default connect(mapStateToProps)(User);

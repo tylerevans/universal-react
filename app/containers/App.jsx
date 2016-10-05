@@ -15,6 +15,7 @@ const App = ({ children }) => {
       />
       <nav>
         <ul>
+          <li><Link to="/info">Markets</Link></li>
           <li><Link to="/">Users</Link></li>
         </ul>
       </nav>
