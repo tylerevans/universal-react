@@ -4,17 +4,17 @@ import { connect } from 'react-redux';
 import * as UsersActions from '../actions/users';
 import UserList from '../components/UserList';
 
-// @connect(state => { users: state.users })
+const mapStateToProps = (state) => {
+  return {
+    users: state.users,
+  };
+};
+
 class Home extends Component {
-
-  static readyOnActions(dispatch) {
-    return Promise.all([
-      dispatch(UsersActions.fetchUsersIfNeeded()),
-    ]);
-  }
-
   componentDidMount() {
-    Home.readyOnActions(this.props.dispatch);
+    return Promise.all([
+      this.props.dispatch(UsersActions.fetchUsersIfNeeded()),
+    ]);
   }
 
   renderUsers() {
@@ -47,12 +47,6 @@ class Home extends Component {
       </div>
     );
   }
-}
-
-function mapStateToProps(state) {
-  return {
-    users: state.users,
-  };
 }
 
 export default connect(mapStateToProps)(Home);
